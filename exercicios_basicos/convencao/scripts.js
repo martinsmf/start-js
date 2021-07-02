@@ -1,5 +1,5 @@
 let nome3 = 'Matheus';
-let $nome ='teste';
+let $nome = 'teste';
 let _nome = 'teste';
 // let @nome = 'teste'
 // let !nome = 'teste'
