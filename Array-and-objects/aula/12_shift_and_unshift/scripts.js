@@ -1,3 +1,5 @@
+// shift remove o primeiro item do array e unshift adiciona
+
 let car = ['BMW', 'Audi', 'Vw', 'FIAT']
 
 let removedFirstCar = car.shift();
