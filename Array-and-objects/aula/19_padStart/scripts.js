@@ -1,4 +1,4 @@
-// insert character after of string
+// insert character before of string
 
 let sku = "34";
 
