@@ -1,30 +1,43 @@
-const timer = document.querySelector('.timer');
-const iniciar = document.querySelector('.iniciar');
-const pausar = document.querySelector('.pausar');
-const zerar = document.querySelector('.zerar');
+function relogio() {
+  function criaHoraDosSegundos(segundos) {
+    const data = new Date(segundos * 1000);
+    return data.toLocaleTimeString('pt-BR', {
+      hour12: false,
+      timeZone: 'UTC'
+    })
+  }
 
-iniciar.addEventListener('click', (event) => {
-  timer.innerHTML = setInterval(() => {
-    return stopwatch()
-  }, 1000);
-})
+  const visor = document.querySelector('.timer');
+  let segundos = 0;
+  let timer;
 
-// pausar.addEventListener('click', (event) => {
-//   timer.innerHTML = "cliquei no pausar";
-// })
+  function iniciaRelogio() {
+    timer = setInterval(function () {
+      segundos++;
+      visor.innerHTML = criaHoraDosSegundos(segundos);
+    }, 1000);
+  }
 
-// zerar.addEventListener('click', (event) => {
-//   timer.innerHTML = "cliquei no zerar";
-// })
+  document.addEventListener('click', function (e) {
+    const el = e.target;
 
-function stopwatch() {
-  let date = new Date('2022-09-20 00:00:00');
+    if (el.classList.contains('zerar')) {
+      visor.classList.remove('pausado')
+      clearInterval(timer);
+      visor.innerHTML = '00:00:00';
+      segundos = 0;
+    }
 
-  return date.toLocaleTimeString('pt-br', {
-    hour: "2-digit",
-    minute: '2-digit',
-    second: '2-digit'
-  })
+    if (el.classList.contains('iniciar')) {
+      visor.classList.remove('pausado')
+      clearInterval(timer);
+      iniciaRelogio();
+    }
+
+    if (el.classList.contains('pausar')) {
+      visor.classList.add('pausado')
+      clearInterval(timer);
+    }
+  });
 }
-
-console.log(stopwatch());
+relogio();
